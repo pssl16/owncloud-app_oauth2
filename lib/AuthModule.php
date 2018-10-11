@@ -43,6 +43,7 @@ class AuthModule implements IAuthModule {
 		$authHeader = $request->getHeader('Authorization');
 
 		if (strpos($authHeader, 'Bearer ') === false) {
+			\OC::$server->getLogger()->debug('No Authorization: Bearer header detected', ['app' => 'oauth2']);
 			return null;
 		}
 
